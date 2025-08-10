@@ -37,6 +37,7 @@
         # Add Home Manager module
         home-manager.users.shanepadgett = { ... }: {
           home.stateVersion = "25.05";
+          nixpkgs.config.allowUnfree = true;
           # Symlink ~/.gitconfig
           home.file.".gitconfig".source = ./config/gitconfig;
           # Symlink VSCode settings.json
