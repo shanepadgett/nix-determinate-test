@@ -4,7 +4,7 @@
 
 Bootstrap:
 ```zsh
-curl -fsSL https://raw.githubusercontent.com/shanepadgett/nix-determinate-test/main/install.sh | zsh
+curl -fsSL https://raw.githubusercontent.com/shanepadgett/nix-determinate-test/main/install.sh | bash
 ```
 
 Apply the config (nix-darwin not install)
