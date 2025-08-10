@@ -36,6 +36,10 @@
       url = "github:hraban/mac-app-util";
       # Note: no 'follows' here, so it uses its own nixpkgs version
     };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+    };
   };
 
   # The 'outputs' function defines what this flake produces
@@ -75,6 +79,8 @@
       modules = [
         # Import our main system configuration from darwin.nix
         # This file contains system-wide settings like packages, services
+        # Pass inputs to darwin.nix so it can access nix-vscode-extensions
+        { _module.args = { inherit inputs; }; }
         ./darwin.nix
 
         # Add home-manager as a darwin module

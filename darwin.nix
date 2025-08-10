@@ -2,8 +2,9 @@
 # The function signature receives three arguments:
 # - config: the final merged configuration (useful for referencing other options)
 # - pkgs: the nixpkgs package set (contains all available packages)
+# - inputs: the flake inputs (needed for nix-vscode-extensions overlay)
 # - ...: any additional arguments (we don't use them here, hence the ellipsis)
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 # Return an attribute set that defines our system configuration
 {
@@ -15,6 +16,12 @@
   # "aarch64-darwin" = Apple Silicon Macs (M1, M2, M3, etc.)
   # Use "x86_64-darwin" for Intel Macs
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  # Configure nixpkgs overlays to extend available packages
+  # The nix-vscode-extensions overlay provides access to VSCode marketplace extensions
+  nixpkgs.overlays = [
+    inputs.nix-vscode-extensions.overlays.default
+  ];
 
   # Allow installation of proprietary/unfree software
   # Many useful applications (like VS Code, Chrome) require this

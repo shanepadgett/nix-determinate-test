@@ -86,7 +86,7 @@ in
   programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      extensions = with pkgs.vscode-extensions; [
+      extensions = with pkgs.vscode-marketplace; [
           Augment.vscode-augment
           EditorConfig.EditorConfig
           GitHub.github-vscode-theme
