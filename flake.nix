@@ -50,6 +50,13 @@
           home.stateVersion = "25.05";
           nixpkgs.config.allowUnfree = true;
 
+          programs.brew = {
+            enable = true;
+            casks = [ "1password" "bruno" ];  # GUI apps
+            packages = [ "jq" ]; # CLI tools
+            taps = [ "homebrew/cask-versions" "homebrew/cask-fonts" ]; # any extra taps
+          };
+
           home.file.".gitconfig".source = ./config/gitconfig;
 
           programs.git.enable = true;
