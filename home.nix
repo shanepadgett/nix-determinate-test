@@ -87,15 +87,16 @@ in
       enable = true;
       package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
-          # Extensions from nixpkgs (curated)
-          EditorConfig.EditorConfig
-          GitHub.github-vscode-theme
-          pinage404.nix-extension-pack
+          # Extensions from nixpkgs (curated) - these are confirmed available
+          editorconfig.editorconfig
+          github.github-vscode-theme
       ] ++ [
           # Extensions from marketplace (using full path)
+          # Note: These will be available after the overlay is properly loaded
           pkgs.vscode-marketplace.augment.vscode-augment
           pkgs.vscode-marketplace.anthropic.claude-code
           pkgs.vscode-marketplace.kilocode.kilo-code
+          pkgs.vscode-marketplace.pinage404.nix-extension-pack
       ];
   };
 }
