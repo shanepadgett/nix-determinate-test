@@ -1,0 +1,47 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+__MACOSX/
+.Spotlight-V100
+.Trashes
+.fseventsd
+.DocumentRevisions-V100
+.metadata_never_index
+.apdisk
+.TemporaryItems
+
+# Editor / IDE files
+# Visual Studio Code
+*.code-workspace
+
+# JetBrains (IntelliJ, WebStorm, PyCharm, etc.)
+*.iml
+*.iws
+out/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Atom
+.atom/
+
+# Emacs
+*~
+\#*\#
+.#*
+
+# Vim
+.*.swp
+*.swp
+*.swo
+*.swn
+
+# Temporary and backup files
+*.tmp
+*.temp
+*.bak
+*.old
