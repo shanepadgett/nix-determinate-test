@@ -94,7 +94,7 @@ in
   programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      extensions = with pkgs.vscode-extensions; [
+      profiles.default.extensions = with pkgs.vscode-extensions; [
           # Extensions from nixpkgs (curated) - these are confirmed available
           editorconfig.editorconfig
           github.github-vscode-theme
