@@ -3,7 +3,7 @@
 {
   # Human-readable description of what this flake does
   # This appears when you run 'nix flake show' or 'nix flake metadata'
-  description = "Universal nix-darwin config for all Macs";
+  description = "Universal nix-darwin config for all Macs with shell utilities";
 
   # The 'inputs' section declares all external dependencies this flake needs
   # These are like dependencies in package.json or requirements.txt
@@ -42,7 +42,30 @@
   # It receives all inputs as arguments and returns an attribute set
   # The '@' syntax captures all inputs in the 'inputs' variable while also
   # destructuring specific ones (self, nix-darwin, etc.) for easy access
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, ... }: {
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, ... }:
+  let
+    # Define supported systems
+    systems = [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" "aarch64-linux" ];
+
+    # Helper to generate outputs for each system
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in
+  {
+    # Expose shell utilities as packages for each system
+    packages = forAllSystems (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        shellUtils = import ./shell-utils { inherit pkgs; };
+      in
+      shellUtils // {
+        # Provide a combined package with all utilities
+        default = pkgs.buildEnv {
+          name = "shell-utils";
+          paths = builtins.attrValues shellUtils;
+        };
+      }
+    );
+
     # darwinConfigurations defines system configurations for macOS
     # 'default' is the name of this configuration - you could have multiple
     # You'd activate this with: darwin-rebuild switch --flake .#default
@@ -73,8 +96,8 @@
           home-manager.useUserPackages = true;
 
           # Pass the flake inputs to home-manager modules
-          # This allows home.nix to access things like mac-app-util
-          home-manager.extraSpecialArgs = { inherit inputs; };
+          # This allows home.nix to access things like mac-app-util and shell utilities
+          home-manager.extraSpecialArgs = { inherit inputs self; };
         }
 
         # Include mac-app-util's darwin module for macOS app management

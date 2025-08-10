@@ -4,10 +4,15 @@
 # - config: the final merged home configuration
 # - pkgs: the nixpkgs package set for installing user packages
 # - inputs: the flake inputs passed from flake.nix (includes mac-app-util, etc.)
+# - self: reference to this flake for accessing shell utilities
 # - ...: any additional arguments
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, self, ... }:
 
 # Return an attribute set that defines our user configuration
+let
+  # Import shell utilities from this flake
+  shellUtils = import ./shell-utils { inherit pkgs; };
+in
 {
   # Basic user identification - must match the system user
   # This tells Home Manager which user account to manage
@@ -23,6 +28,11 @@
   # Format is "YY.MM" (year.month) - don't change after initial setup
   # It helps Home Manager handle breaking changes between versions
   home.stateVersion = "25.05";
+
+  # Install shell utilities as user packages
+  home.packages = with pkgs; [
+    # Shell utilities from this flake
+  ] ++ (builtins.attrValues shellUtils);
 
   # Import additional Home Manager modules
   # This extends Home Manager's capabilities with extra functionality

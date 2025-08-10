@@ -15,10 +15,7 @@ if command -v direnv &> /dev/null; then
     eval "$(direnv hook bash)"
 fi
 
-# Source functions
-for function_file in ~/.functions/*.sh; do
-    [ -r "$function_file" ] && source "$function_file"
-done
+
 
 # Source aliases
 if [ -f ~/.aliases ]; then
