@@ -9,7 +9,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 
 Apply the config
 ```zsh
-nix run nix-darwin -- switch --flake github:shanepadgett/nix-determinate-test#default
+sudo nix run nix-darwin -- switch --flake github:shanepadgett/nix-determinate-test#default --no-write-lock-file
 ```
 
 Uninstall nix
