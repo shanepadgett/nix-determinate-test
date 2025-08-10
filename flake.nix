@@ -51,10 +51,8 @@
       darwinConfigurations.default = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
-          home-manager.darwinModules.home-manager
           mac-app-util.darwinModules.default
-        ];
-        home-manager.sharedModules = [
+          mac-app-util.darwinModules.default
           mac-app-util.homeManagerModules.default
         ];
       };
