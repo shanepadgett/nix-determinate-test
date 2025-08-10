@@ -96,7 +96,9 @@ in
           pkgs.vscode-marketplace.augment.vscode-augment
           pkgs.vscode-marketplace.anthropic.claude-code
           pkgs.vscode-marketplace.kilocode.kilo-code
-          pkgs.vscode-marketplace.pinage404.nix-extension-pack
+          pkgs.vscode-marketplace.mkhl.direnv
+          pkgs.vscode-marketplace.arrterian.nix-env-selector
+          pkgs.vscode-marketplace.jnoortheen.nix-ide
       ];
   };
 }

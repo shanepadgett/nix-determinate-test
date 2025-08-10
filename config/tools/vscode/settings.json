@@ -31,6 +31,17 @@
     "window.restoreWindows": "none",
     "workbench.colorTheme": "GitHub Dark Default",
     "workbench.editor.openPositioning": "left",
+    "terminal.integrated.ignoreProcessNames": [
+        "starship",
+        "oh-my-posh",
+        "bash",
+        "zsh",
+        "opencode"
+    ],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.activityBar.location": "top",
+    "remote.autoForwardPortsSource": "hybrid",
+    "remote.containers.copyGitConfig": true,
     //***********************
     // Languages
     //***********************
@@ -58,18 +69,10 @@
     //***********************
     "augment.nextEdit.enableBackgroundSuggestions": false,
     "augment.completions.enableAutomaticCompletions": false,
-    "terminal.integrated.ignoreProcessNames": [
-        "starship",
-        "oh-my-posh",
-        "bash",
-        "zsh",
-        "opencode"
-    ],
-    "diffEditor.ignoreTrimWhitespace": false,
     "augment.chat.userGuidelines": "# User Guidelines\n\n## Git\n- **DO NOT**: Add, commit or push any changes. The user will handle this.\n\n## Communication and responses\n- Treat the user as a collaborator, not a customer — optimize for the best outcome, not agreement.\n- Ask clarifying questions if context is missing or ambiguous. Don’t assume.\n- Push back on bad ideas. Suggest better alternatives with reasoning.\n- Share your thought process out loud — include hypotheses, tradeoffs, and critiques of your own proposals.\n- Favor precision over politeness. Be respectful, but don’t sugar-coat.\n- Call out constraints, risks, or downstream impacts — especially those the user may not see.\n- Don't blindly repeat instructions — validate them first, then execute or propose a better path.",
-    "workbench.activityBar.location": "top",
-    "remote.autoForwardPortsSource": "hybrid",
-    "remote.containers.copyGitConfig": true,
+    //***********************
+    // Kilo Code
+    //***********************
     "kilo-code.allowedCommands": [
         "npm test",
         "npm install",
