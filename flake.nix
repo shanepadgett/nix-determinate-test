@@ -26,6 +26,7 @@
         nix.enable = false;
         nixpkgs.hostPlatform = "aarch64-darwin";
         nixpkgs.config.allowUnfree = true;
+        system.primaryUser = "shanepadgett";
 
         users.users.shanepadgett = {
           name = "shanepadgett";
