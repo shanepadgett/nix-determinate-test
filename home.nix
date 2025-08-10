@@ -83,5 +83,16 @@ in
   # Enable Visual Studio Code for this user
   # This installs VS Code and allows Home Manager to manage its configuration
   # You can add extensions, settings, keybindings, etc. through Home Manager
-  programs.vscode.enable = true;
+  programs.vscode = {
+      enable = true;
+      package = pkgs.vscode;
+      extensions = with pkgs.vscode-extensions; [
+          Augment.vscode-augment
+          EditorConfig.EditorConfig
+          GitHub.github-vscode-theme
+          pinage404.nix-extension-pack
+          anthropic.claude-code
+          kilocode.Kilo-Code
+      ];
+  };
 }
