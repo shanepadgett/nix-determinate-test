@@ -111,7 +111,7 @@ pkgs.writeShellApplication {
         cat > "README.md" <<EOF
 # $project_name
 
-\${description:-A new project}
+$([ -n "$description" ] && echo "$description" || echo "A new project")
 
 ## Description
 
@@ -255,7 +255,7 @@ EOF
         printf "Choose visibility [1-3] (default: 1): "
         read -r visibility_choice || true
         # Use default if empty
-        visibility_choice=\''${visibility_choice:-1}
+        visibility_choice=''${visibility_choice:-1}
         case "$visibility_choice" in
           1) repo_visibility="private"; break ;;
           2) repo_visibility="public"; break ;;
@@ -275,7 +275,7 @@ EOF
         printf "Choose template option [1-3] (default: 1): "
         read -r template_choice || true
         # Use default if empty
-        template_choice=\''${template_choice:-1}
+        template_choice=''${template_choice:-1}
         case "$template_choice" in
           1) template_mode="none"; break ;;
           2)
@@ -299,7 +299,7 @@ EOF
         printf "Choose location [1-2] (default: 1): "
         read -r location_choice || true
         # Use default if empty
-        location_choice=\''${location_choice:-1}
+        location_choice=''${location_choice:-1}
         case "$location_choice" in
           1) repo_location="subdirectory"; break ;;
           2) repo_location="current"; break ;;

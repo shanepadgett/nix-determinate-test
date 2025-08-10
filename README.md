@@ -68,5 +68,6 @@ nix run ./shell-utils#test
 
 Uninstall nix
 ```zsh
+sudo darwin-uninstaller
 /nix/nix-installer uninstall
 ```
