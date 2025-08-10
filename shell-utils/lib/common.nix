@@ -11,7 +11,7 @@
     error()   { printf "\033[31m✖ %s\033[0m\n" "$*" >&2; }
     success() { printf "\033[32m✔ %s\033[0m\n" "$*"; }
     header()  { printf "\n\033[1m== %s ==\033[0m\n" "$*"; }
-    
+
     # Legacy aliases for compatibility
     print_info() { info "$@"; }
     print_warn() { warn "$@"; }
@@ -118,17 +118,17 @@
     # Prompt for confirmation
     confirm() {
       local message="$1"
-      local default="${2:-N}"
+      local default="''${2:-N}"
       local prompt
-      
+
       case "$default" in
         [Yy]*) prompt="[Y/n]" ;;
         *) prompt="[y/N]" ;;
       esac
-      
+
       printf "%s %s: " "$message" "$prompt"
       read -r response || true
-      
+
       case "$response" in
         [Yy]*) return 0 ;;
         [Nn]*) return 1 ;;
@@ -147,11 +147,11 @@
       local prompt="$1"
       local validator="$2"  # Optional validation function
       local value
-      
+
       while true; do
         printf "%s: " "$prompt"
         read -r value || true
-        
+
         if [ -n "$value" ]; then
           if [ -z "$validator" ] || "$validator" "$value"; then
             printf "%s" "$value"
