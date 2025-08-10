@@ -84,15 +84,14 @@
         error "Repository name is required"
         return 1
       fi
-      case "$name" in
-        *[!a-zA-Z0-9._-]*)
-          error "Repository name can only contain alphanumeric characters, dots, dashes, and underscores"
-          return 1
-          ;;
-        *)
-          return 0
-          ;;
-      esac
+
+      # Check for invalid characters
+      if echo "$name" | grep -q '[^a-zA-Z0-9._-]'; then
+        error "Repository name can only contain alphanumeric characters, dots, dashes, and underscores"
+        return 1
+      fi
+
+      return 0
     }
 
     # Safety check for directory deletion
