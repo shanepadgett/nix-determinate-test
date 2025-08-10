@@ -14,6 +14,22 @@ A collection of useful shell utilities built with Nix `writeShellApplication` fo
 
 ### Git Utilities
 
+#### `git-init` - Git Project Initialization
+Interactive wizard for creating new GitHub repositories with local setup.
+
+```bash
+git-init    # Start interactive repository creation wizard
+```
+
+**Features:**
+- Creates GitHub repository with customizable settings
+- Initializes local git repository
+- Creates README.md and .gitignore files
+- Supports template repositories
+- Handles repository visibility (private/public/internal)
+- Makes initial commit and pushes to remote
+- GitHub CLI integration with authentication
+
 #### `gcp` - Git Commit and Push
 Quick git workflow: add all changes, commit with message, and push.
 
@@ -85,7 +101,7 @@ with-node-env test npm test
 #### Convenience Aliases
 
 - `dev-env` - Set NODE_ENV to development
-- `prod-env` - Set NODE_ENV to production  
+- `prod-env` - Set NODE_ENV to production
 - `test-env` - Set NODE_ENV to test
 - `clear-env` - Unset NODE_ENV
 - `npm-dev` - Run npm with development environment
@@ -137,7 +153,7 @@ nix develop
 All utilities use shared components from `lib/common.nix`:
 
 - **Colors**: Consistent color output functions
-- **GitHub**: GitHub CLI helper functions  
+- **GitHub**: GitHub CLI helper functions
 - **Git**: Git repository helper functions
 - **Validation**: Input validation functions
 - **Interaction**: User interaction helpers

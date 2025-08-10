@@ -4,6 +4,7 @@ let
 in
 {
   # Git utilities
+  "git-init" = callPackage ./git-init.nix { };
   gcp = callPackage ./gcp.nix { };
 
   # Repository management
@@ -47,7 +48,7 @@ in
   "npm-dev" = pkgs.writeShellApplication {
     name = "npm-dev";
     text = ''with-node-env development npm "$@"'';
-    runtimeInputs = [ 
+    runtimeInputs = [
       (callPackage ./with-node-env.nix { })
       pkgs.nodejs
     ];
@@ -56,7 +57,7 @@ in
   "yarn-dev" = pkgs.writeShellApplication {
     name = "yarn-dev";
     text = ''with-node-env development yarn "$@"'';
-    runtimeInputs = [ 
+    runtimeInputs = [
       (callPackage ./with-node-env.nix { })
       pkgs.yarn
     ];
@@ -65,7 +66,7 @@ in
   "pnpm-dev" = pkgs.writeShellApplication {
     name = "pnpm-dev";
     text = ''with-node-env development pnpm "$@"'';
-    runtimeInputs = [ 
+    runtimeInputs = [
       (callPackage ./with-node-env.nix { })
       pkgs.nodePackages.pnpm
     ];
