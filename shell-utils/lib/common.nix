@@ -102,7 +102,7 @@
       abs_path="$(realpath "$path" 2>/dev/null || echo "$path")"
 
       case "$abs_path" in
-        "$HOME" | "/" | "$HOME/.dotfiles" | "$HOME/.")
+        "$HOME" | "/" | "$HOME/.dotfiles" | "$HOME/."*)
           error "Refusing to delete system directory: $abs_path"
           return 1
           ;;
