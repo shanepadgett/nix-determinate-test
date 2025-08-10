@@ -21,6 +21,7 @@
         nixpkgs.hostPlatform = "aarch64-darwin";
 
         users.users.shanepadgett = {
+          name = "shanepadgett";
           home = "/Users/shanepadgett";
         };
 
@@ -34,7 +35,7 @@
 
         # Add Home Manager module
         home-manager.users.shanepadgett = { ... }: {
-          home.stateVersion = 25.05; # or current; matches nixpkgs
+          home.stateVersion = "25.05";
           # Symlink ~/.gitconfig
           home.file.".gitconfig".source = ./config/gitconfig;
           # Symlink VSCode settings.json
