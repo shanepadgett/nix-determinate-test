@@ -38,17 +38,13 @@
         system.stateVersion = 6;
 
         # Add Home Manager module
-        home-manager.users.shanepadgett = { ... }: {
+        home-manager.users.shanepadgett = { pkgs, ... }: {
           home.stateVersion = "25.05";
           nixpkgs.config.allowUnfree = true;
-          # Symlink ~/.gitconfig
           home.file.".gitconfig".source = ./config/gitconfig;
-          # Symlink VSCode settings.json
-          # home.file.".config/Code/User/settings.json".source = /Users/shanepadgett/path/to/settings.json;
-          # Optionally, manage packages and VSCode with home-manager
+          # home.file.".config/Code/User/settings.json".source = ./config/vscode-settings.json;
           programs.git.enable = true;
           programs.vscode.enable = true;
-          # ...other home-manager config...
         };
       };
     in {
