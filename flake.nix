@@ -23,10 +23,15 @@
     in {
       darwinConfigurations.default = nix-darwin.lib.darwinSystem {
         modules = [
-          darwinConfig
+          ./darwin.nix
           home-manager.darwinModules.home-manager
-          homeConfig
-          mac-app-util.darwinModules.default
+          {
+            home-manager.users.shanepadgett = import ./home.nix;
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit (inputs) mac-app-util; };
+          }
+          inputs.mac-app-util.darwinModules.default
         ];
       };
     };

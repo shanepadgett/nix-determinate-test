@@ -1,9 +1,7 @@
-{ inputs }:
-
 { pkgs, ... }:
 {
-  imports = [ inputs.mac-app-util.homeManagerModules.default ];
-
+  home.username = "shanepadgett";
+  home.homeDirectory = "/Users/shanepadgett";
   home.stateVersion = "25.05";
   nixpkgs.config.allowUnfree = true;
 
@@ -11,4 +9,5 @@
 
   programs.git.enable = true;
   programs.vscode.enable = true;
+  imports = [ inputs.mac-app-util.homeManagerModules.default ];  # if needed
 }
