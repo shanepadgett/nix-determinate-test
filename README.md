@@ -1,15 +1,18 @@
 # nix-determinate-test
 
-A new project
-
 ## Getting Started
 
-TODO: Add setup instructions
+Install nix with determinate
+```zsh
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate --no-confirm --force
+```
 
-## Development
+Apply the config
+```zsh
+nix run nix-darwin -- switch --flake github:shanepadgett/nix-determinate-test#default
+```
 
-TODO: Add development instructions
-
-## Contributing
-
-TODO: Add contribution guidelines
+Uninstall nix
+```zsh
+/nix/nix-installer uninstall
+```
