@@ -27,6 +27,7 @@ print_step "Installing Homebrew..."
 if command_exists brew; then
     print_success "Homebrew is already installed"
 else
+    sudo -v
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # Add Homebrew to PATH for the current session
