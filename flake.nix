@@ -43,6 +43,7 @@
           programs.vscode.enable = true;
         };
       };
+      hmLib = home-manager.lib;
     in {
       darwinConfigurations.default = nix-darwin.lib.darwinSystem {
         modules = [
@@ -51,8 +52,7 @@
           mac-app-util.darwinModules.default
           mac-app-util.homeManagerModules.default
         ];
-        # Pass Home Manager as 'hm' for mac-app-util
-        specialArgs = { hm = home-manager; };
+        specialArgs = { hm = hmLib; };
       };
     };
 }
