@@ -86,13 +86,16 @@ in
   programs.vscode = {
       enable = true;
       package = pkgs.vscode;
-      extensions = with pkgs.vscode-marketplace; [
-          Augment.vscode-augment
+      extensions = with pkgs.vscode-extensions; [
+          # Extensions from nixpkgs (curated)
           EditorConfig.EditorConfig
           GitHub.github-vscode-theme
           pinage404.nix-extension-pack
-          anthropic.claude-code
-          kilocode.Kilo-Code
+      ] ++ [
+          # Extensions from marketplace (using full path)
+          pkgs.vscode-marketplace.augment.vscode-augment
+          pkgs.vscode-marketplace.anthropic.claude-code
+          pkgs.vscode-marketplace.kilocode.kilo-code
       ];
   };
 }
