@@ -22,6 +22,7 @@
 
   # GitHub CLI helper functions
   github = ''
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Check if GitHub CLI is available and authenticated
     check_github_cli() {
       if ! command -v gh >/dev/null 2>&1; then
@@ -31,6 +32,7 @@
       fi
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     check_github_auth() {
       check_github_cli || return 1
       if ! gh auth status >/dev/null 2>&1; then
@@ -40,6 +42,7 @@
       fi
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     get_github_user() {
       gh api user --jq '.login' 2>/dev/null || true
     }
@@ -47,6 +50,7 @@
 
   # Git helper functions
   git = ''
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Check if git user configuration is set
     check_git_user_config() {
       local git_name git_email
@@ -63,6 +67,7 @@
       return 0
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Get current repository name
     get_current_repo_name() {
       if ! git rev-parse --git-dir >/dev/null 2>&1; then
@@ -116,6 +121,7 @@
 
   # User interaction functions
   interaction = ''
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Prompt for confirmation
     confirm() {
       local message="$1"
