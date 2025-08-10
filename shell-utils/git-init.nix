@@ -111,7 +111,7 @@ pkgs.writeShellApplication {
         cat > "README.md" <<EOF
 # $project_name
 
-$([ -n "$description" ] && echo "$description" || echo "A new project")
+''${description:-"A new project"}
 
 ## Description
 
