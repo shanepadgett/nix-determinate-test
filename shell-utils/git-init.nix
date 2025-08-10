@@ -8,94 +8,33 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [
     git
     gh
-    coreutils    # mkdir, basename, dirname
-    gnused       # sed for template replacement
-    gnugrep      # grep for validation
+    coreutils
+    gnused
+    gnugrep
   ];
   text = ''
     set -euo pipefail
 
-    # Color output functions
-    info()    { printf "\033[36m[INFO] %s\033[0m\n" "$*"; }
-    warn()    { printf "\033[33m[WARN] %s\033[0m\n" "$*"; }
-    error()   { printf "\033[31m[ERROR] %s\033[0m\n" "$*" >&2; }
-    success() { printf "\033[32m[SUCCESS] %s\033[0m\n" "$*"; }
-    header()  { printf "\n\033[1m== %s ==\033[0m\n" "$*"; }
-
-    # Check if git user configuration is set
-    check_git_user_config() {
-      local git_name git_email
-      git_name="$(git config user.name 2>/dev/null || true)"
-      git_email="$(git config user.email 2>/dev/null || true)"
-
-      if [ -z "$git_name" ] || [ -z "$git_email" ]; then
-        error "Git user configuration is not set"
-        info "Please configure your git user name and email:"
-        info '  git config --global user.name "Your Name"'
-        info '  git config --global user.email "your.email@example.com"'
-        return 1
-      fi
-      return 0
-    }
-
-    # Check if GitHub CLI is available and authenticated
-    check_github_cli() {
-      if ! command -v gh >/dev/null 2>&1; then
-        error "GitHub CLI (gh) is required but not found"
-        info "Install with: nix-shell -p gh"
-        return 1
-      fi
-    }
-
-    get_github_user() {
-      gh api user --jq '.login' 2>/dev/null || true
-    }
-
-    # Validate repository name (GitHub rules)
-    validate_repo_name() {
-      local name="$1"
-      if [ -z "$name" ]; then
-        error "Repository name is required"
-        return 1
-      fi
-
-      # Check for invalid characters
-      if echo "$name" | grep -q '[^a-zA-Z0-9._-]'; then
-        error "Repository name can only contain alphanumeric characters, dots, dashes, and underscores"
-        return 1
-      fi
-
-      return 0
-    }
+    ${common.colors}
+    ${common.github}
+    ${common.git}
+    ${common.validation}
+    ${common.interaction}
 
     usage() {
-      cat >&2 <<'USAGE'
-    Usage: git-init [OPTIONS]
-
-    Git project initialization utility that:
-    - Creates a new GitHub repository
-    - Initializes local git repository
-    - Creates README.md and .gitignore files
-    - Makes initial commit and pushes to remote
-
-    Options:
-      -h, --help         Show this help message
-
-    Interactive prompts will guide you through:
-    - Repository name and description
-    - Visibility (private/public/internal)
-    - Template options
-    - Project location
-    - GitHub features
-
-    Requirements:
-    - Git user.name and user.email must be configured
-    - GitHub CLI must be installed and authenticated
-    - Internet connection for GitHub operations
-
-    Examples:
-      git-init           # Start interactive repository creation
-    USAGE
+      echo "Usage: git-init [OPTIONS]" >&2
+      echo "" >&2
+      echo "Git project initialization utility that:" >&2
+      echo "- Creates a new GitHub repository" >&2
+      echo "- Initializes local git repository" >&2
+      echo "- Creates README.md and .gitignore files" >&2
+      echo "- Makes initial commit and pushes to remote" >&2
+      echo "" >&2
+      echo "Options:" >&2
+      echo "  -h, --help         Show this help message" >&2
+      echo "" >&2
+      echo "Examples:" >&2
+      echo "  git-init           # Start interactive repository creation" >&2
     }
 
     # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
