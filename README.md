@@ -2,17 +2,17 @@
 
 ## Getting Started
 
-Install nix with determinate
+Bootstrap:
 ```zsh
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate --no-confirm --force
+curl -fsSL https://raw.githubusercontent.com/shanepadgett/nix-determinate-test/main/install.sh | zsh
 ```
 
 Apply the config (nix-darwin not install)
 ```zsh
-sudo nix run nix-darwin -- switch --flake github:shanepadgett/nix-determinate-test#default --no-write-lock-file
+sudo nix run nix-darwin -- switch --flake .#default
 ```
 
-Rebuild nix-darwin
+Rebuild and apply (nix-darwin installed)
 ```zsh
 sudo darwin-rebuild switch --flake .#default
 ```
