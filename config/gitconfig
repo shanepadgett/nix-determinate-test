@@ -1,0 +1,15 @@
+[user]
+    name = Shane Padgett
+    email = contact@shanepadgett.dev
+
+[core]
+    editor = vim
+
+[color]
+    ui = auto
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    cm = commit

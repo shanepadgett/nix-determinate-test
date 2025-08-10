@@ -8,9 +8,13 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
     let
       configuration = { pkgs, ... }: {
         nix.enable = false;
@@ -27,10 +31,26 @@
           ripgrep
         ];
         system.stateVersion = 6;
+
+        # Add Home Manager module
+        home-manager.users.shanepadgett = { ... }: {
+          home.stateVersion = 25.05; # or current; matches nixpkgs
+          # Symlink ~/.gitconfig
+          home.file.".gitconfig".source = ./config/gitconfig;
+          # Symlink VSCode settings.json
+          # home.file.".config/Code/User/settings.json".source = /Users/shanepadgett/path/to/settings.json;
+          # Optionally, manage packages and VSCode with home-manager
+          programs.git.enable = true;
+          programs.vscode.enable = true;
+          # ...other home-manager config...
+        };
       };
     in {
       darwinConfigurations.default = nix-darwin.lib.darwinSystem {
-        modules = [ configuration ];
+        modules = [
+          configuration
+          home-manager.darwinModules.home-manager
+        ];
       };
     };
 }
