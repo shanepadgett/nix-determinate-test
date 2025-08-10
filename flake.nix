@@ -34,7 +34,8 @@
     # Helps with app installation and management on macOS
     mac-app-util = {
       url = "github:hraban/mac-app-util";
-      # Note: no 'follows' here, so it uses its own nixpkgs version
+      # Use the same nixpkgs to avoid conflicts and reduce the plist warning
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-vscode-extensions = {
