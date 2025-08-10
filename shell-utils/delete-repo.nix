@@ -47,6 +47,7 @@ pkgs.writeShellApplication {
     USAGE
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     get_repo_info() {
       local repo_name="$1"
       local user
@@ -60,6 +61,7 @@ pkgs.writeShellApplication {
       return 1
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     delete_github_repo() {
       local full="$1"
       local force="$2"
@@ -96,6 +98,7 @@ pkgs.writeShellApplication {
       fi
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     delete_local_repo() {
       local path="$1"
       local force="$2"
@@ -125,6 +128,7 @@ pkgs.writeShellApplication {
       fi
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     prompt_for_repo_name() {
       prompt_input "Repository name to delete" validate_repo_name
     }

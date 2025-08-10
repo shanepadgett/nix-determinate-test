@@ -35,6 +35,7 @@ pkgs.writeShellApplication {
     USAGE
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Validate environment value
     validate_env() {
       local env="$1"
@@ -50,6 +51,7 @@ pkgs.writeShellApplication {
       esac
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Main function
     main() {
       if [ $# -lt 2 ]; then

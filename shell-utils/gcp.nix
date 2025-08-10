@@ -34,6 +34,7 @@ pkgs.writeShellApplication {
     USAGE
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Main function
     main() {
       # Check arguments

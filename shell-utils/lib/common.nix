@@ -77,6 +77,7 @@
 
   # Validation functions
   validation = ''
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Validate repository name (GitHub rules)
     validate_repo_name() {
       local name="$1"
@@ -94,6 +95,7 @@
       return 0
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Safety check for directory deletion
     validate_safe_path() {
       local path="$1"
@@ -141,6 +143,7 @@
       esac
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     # Prompt for input with validation
     prompt_input() {
       local prompt="$1"

@@ -35,6 +35,7 @@ pkgs.writeShellApplication {
     USAGE
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     run_cleanup() {
       local description="$1"
       local list_command="$2"
@@ -53,6 +54,7 @@ pkgs.writeShellApplication {
       echo ""
     }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     check_docker() {
       if ! command -v docker >/dev/null 2>&1; then
         error "Docker is not installed"
