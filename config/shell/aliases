@@ -90,18 +90,3 @@ if command -v fzf &> /dev/null; then
     alias fzf-history='history | fzf'
     alias fzf-files='find . -type f | fzf'
 fi
-
-# Source configuration
-source "$HOME/.dotfiles/config/config.env"
-
-if [ -f "$SCRIPTS_DIR/dev-utils.sh" ]; then
-    # Ensure ~/.local/bin directory exists
-    [ ! -d ~/.local/bin ] && mkdir -p ~/.local/bin
-
-    # Create individual symlinks if they don't exist
-    [ ! -f ~/.local/bin/pr ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/pr
-    [ ! -f ~/.local/bin/dev ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/dev
-    [ ! -f ~/.local/bin/update-configs ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/update-configs
-    [ ! -f ~/.local/bin/reset-configs ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/reset-configs
-    [ ! -f ~/.local/bin/teardown ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/teardown
-fi
