@@ -13,12 +13,16 @@
     success() { printf "\033[32m✔ %s\033[0m\n" "$*"; }
     header()  { printf "\n\033[1m== %s ==\033[0m\n" "$*"; }
 
-    # shellcheck disable=SC2317  # Don't warn about unreachable commands in these functions
     # Legacy aliases for compatibility
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     print_info() { info "$@"; }
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     print_warn() { warn "$@"; }
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     print_error() { error "$@"; }
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     print_success() { success "$@"; }
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
     print_header() { header "$@"; }
   '';
 
