@@ -5,6 +5,7 @@
   # Color and formatting functions
   # These replace the need to source external common.sh files
   colors = ''
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in these functions
     # Color output functions
     info()    { printf "\033[36mℹ %s\033[0m\n" "$*"; }
     warn()    { printf "\033[33m⚠ %s\033[0m\n" "$*"; }
@@ -12,6 +13,7 @@
     success() { printf "\033[32m✔ %s\033[0m\n" "$*"; }
     header()  { printf "\n\033[1m== %s ==\033[0m\n" "$*"; }
 
+    # shellcheck disable=SC2317  # Don't warn about unreachable commands in these functions
     # Legacy aliases for compatibility
     print_info() { info "$@"; }
     print_warn() { warn "$@"; }
