@@ -51,7 +51,6 @@ in
     ".bashrc".source = ./config/shell/bashrc;
     ".aliases".source = ./config/shell/aliases;
     ".exports".source = ./config/shell/exports;
-    ".functions".source = ./config/shell/functions;
 
     # Tool-specific dotfiles in $HOME
     ".ripgreprc".source = ./config/tools/ripgreprc;
