@@ -22,7 +22,11 @@ print_error() {
     echo -e "\033[1;31m✗ $1\033[0m"
 }
 
-# Step 1: Install Homebrew
+if [ ! -t 0 ] && [ -e /dev/tty ]; then
+  print_step "Attaching to your terminal for interactive prompts…"
+  exec </dev/tty
+fi
+
 print_step "Installing Homebrew..."
 if command_exists brew; then
     print_success "Homebrew is already installed"
@@ -40,7 +44,6 @@ else
     print_success "Homebrew installed successfully"
 fi
 
-# Step 2: Install Nix with Determinate
 print_step "Installing Nix with Determinate Systems installer..."
 if command_exists nix; then
     print_success "Nix is already installed"
@@ -55,7 +58,6 @@ else
     print_success "Nix installed successfully"
 fi
 
-# Step 3: Clone the repository
 print_step "Cloning the repository..."
 REPO_URL="https://github.com/shanepadgett/nix-determinate-test.git"
 REPO_DIR="nix-determinate-test"
@@ -70,7 +72,6 @@ else
     print_success "Repository cloned successfully"
 fi
 
-# Step 4: Apply the nix-darwin configuration
 print_step "Applying nix-darwin configuration..."
 if command_exists darwin-rebuild; then
     sudo darwin-rebuild switch --flake .#default
