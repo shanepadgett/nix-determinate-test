@@ -52,7 +52,7 @@
           mac-app-util.darwinModules.default
           mac-app-util.homeManagerModules.default
         ];
-        specialArgs = { hm = hmLib; };
+        extraSpecialArgs = { hm = hmLib; };
       };
     };
 }
