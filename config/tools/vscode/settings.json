@@ -1,0 +1,85 @@
+{
+    //***********************
+    // General
+    //***********************
+    "editor.detectIndentation": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "editor.fontSize": 14,
+    "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
+    "editor.formatOnSave": true,
+    "editor.guides.bracketPairs": true,
+    "editor.insertSpaces": true,
+    "editor.minimap.enabled": false,
+    "editor.rulers": [
+        120
+    ],
+    "editor.scrollbar.verticalScrollbarSize": 8,
+    "editor.tabSize": 2,
+    "emmet.includeLanguages": {
+        "phoenix-heex": "html"
+    },
+    "extensions.autoUpdate": true,
+    "extensions.autoCheckUpdates": true,
+    "extensions.ignoreRecommendations": true,
+    "files.autoSave": "afterDelay",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
+    "window.restoreWindows": "none",
+    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.editor.openPositioning": "left",
+    //***********************
+    // Languages
+    //***********************
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[markdown]": {
+        "editor.wordWrap": "on",
+    },
+    //***********************
+    // Copilot
+    //***********************
+    "chat.commandCenter.enabled": false,
+    "chat.agent.enabled": false,
+    "chat.mcp.enabled": false,
+    "chat.mcp.discovery.enabled": false,
+    //***********************
+    // Augment
+    //***********************
+    "augment.nextEdit.enableBackgroundSuggestions": false,
+    "augment.completions.enableAutomaticCompletions": false,
+    "terminal.integrated.ignoreProcessNames": [
+        "starship",
+        "oh-my-posh",
+        "bash",
+        "zsh",
+        "opencode"
+    ],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "augment.chat.userGuidelines": "# User Guidelines\n\n## Git\n- **DO NOT**: Add, commit or push any changes. The user will handle this.\n\n## Communication and responses\n- Treat the user as a collaborator, not a customer — optimize for the best outcome, not agreement.\n- Ask clarifying questions if context is missing or ambiguous. Don’t assume.\n- Push back on bad ideas. Suggest better alternatives with reasoning.\n- Share your thought process out loud — include hypotheses, tradeoffs, and critiques of your own proposals.\n- Favor precision over politeness. Be respectful, but don’t sugar-coat.\n- Call out constraints, risks, or downstream impacts — especially those the user may not see.\n- Don't blindly repeat instructions — validate them first, then execute or propose a better path.",
+    "workbench.activityBar.location": "top",
+    "remote.autoForwardPortsSource": "hybrid",
+    "remote.containers.copyGitConfig": true,
+    "kilo-code.allowedCommands": [
+        "npm test",
+        "npm install",
+        "tsc",
+        "git log",
+        "git diff",
+        "git show"
+    ],
+    "kilo-code.deniedCommands": [
+        "git commit",
+        "git push"
+    ]
+}

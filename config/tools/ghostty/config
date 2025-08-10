@@ -1,0 +1,28 @@
+# Ghostty terminal configuration
+
+# Font
+font-size = 14
+
+# Colors
+background-opacity = 0.95
+background-blur = true
+split-divider-color = #444444
+theme = Github-Dark-Default
+
+# Tabs
+window-decoration = true
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+
+# Scrollback
+scrollback-limit = 10000
+
+# Shell
+command = /bin/zsh
+
+# Window
+window-height = 35
+window-width = 125
+keybind = shift+enter=text:\n

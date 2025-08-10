@@ -1,0 +1,42 @@
+# Ripgrep configuration file
+# This file configures default behavior for ripgrep (rg)
+
+# Always show line numbers
+--line-number
+
+# Always show column numbers
+--column
+
+# Use smart case (case insensitive unless uppercase letters are used)
+--smart-case
+
+# Follow symbolic links
+--follow
+
+# Show 3 lines of context around matches
+--context=3
+
+# Use colors in output (auto-detected by default)
+--colors=line:fg:yellow
+--colors=line:style:bold
+--colors=path:fg:green
+--colors=path:style:bold
+--colors=match:fg:red
+--colors=match:style:bold
+
+# Ignore common directories and files
+--glob=!.git/
+--glob=!node_modules/
+--glob=!.DS_Store
+--glob=!*.log
+# Note: build/ and dist/ are NOT ignored as they may contain generated code
+# that's useful for debugging (GraphQL types, mocks, etc.)
+--glob=!coverage/
+--glob=!.nyc_output/
+--glob=!*.min.js
+--glob=!*.min.css
+
+# File type associations for better syntax highlighting
+--type-add=web:*.{html,css,js,jsx,ts,tsx,vue,svelte}
+--type-add=config:*.{json,yaml,yml,toml,ini,conf}
+--type-add=docs:*.{md,txt,rst}

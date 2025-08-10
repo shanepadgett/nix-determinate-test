@@ -1,0 +1,44 @@
+# Zsh configuration with zoxide integration
+
+# Source exports
+for export_file in ~/.exports/*.sh; do
+    [ -r "$export_file" ] && source "$export_file"
+done
+
+# Enable zoxide
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+
+# Enable direnv
+if command -v direnv &> /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
+
+# Source functions
+for function_file in ~/.functions/*.sh; do
+    [ -r "$function_file" ] && source "$function_file"
+done
+
+# Source aliases
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+fi
+
+# History
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
+
+# Prompt
+PROMPT='%n@%m:%~%# '
+
+# Machine-specific configs (if they exist)
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
+export PATH="$HOME/.local/bin:$PATH"
+export GOPATH=/go
+export PATH="$GOPATH/bin:$PATH"
+export DIRENV_LOG_FORMAT=""

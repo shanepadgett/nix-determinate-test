@@ -32,12 +32,36 @@
     inputs.mac-app-util.homeManagerModules.default
   ];
 
-  # Manage dotfiles by copying them to the home directory
-  # home.file creates symbolic links or copies files to specific locations
-  # The key (".gitconfig") becomes the filename in the home directory
-  home.file.".gitconfig".source = ./config/gitconfig;
-  # This copies ./config/gitconfig to ~/.gitconfig
-  # Alternative: you could use home.file.".gitconfig".text = "..." for inline content
+  # Manage dotfiles and app configs by symlinking from ./config
+  # Grouping under home.file and xdg.configFile keeps this concise and organized
+  home.file = {
+    # Dotfiles in $HOME
+    ".gitconfig".source = ./config/tools/gitconfig;
+    ".zshrc".source = ./config/shell/zshrc;
+    ".bashrc".source = ./config/shell/bashrc;
+    ".aliases".source = ./config/shell/aliases;
+    ".exports".source = ./config/shell/exports;
+    ".functions".source = ./config/shell/functions;
+
+    # Tool-specific dotfiles in $HOME
+    ".ripgreprc".source = ./config/tools/ripgreprc;
+
+    # Apps that don't follow XDG on macOS (VS Code)
+    # This will create ~/Library/Application Support/Code/User/settings.json
+    "Library/Application Support/Code/User/settings.json".source = ./config/tools/vscode/settings.json;
+  };
+
+  # XDG-configured apps (files live under ~/.config)
+  xdg.configFile = {
+    "direnv/direnv.toml".source = ./config/tools/direnv/direnv.toml;
+    "ghostty/config".source = ./config/tools/ghostty/config;
+    "zed/settings.json".source = ./config/tools/zed/settings.json;
+    "zoxide/config.toml".source = ./config/tools/zoxide/config.toml;
+
+    # Claude app/editor configs (adjust if your install expects a different path)
+    "claude/mcp.json".source = ./config/tools/claude/mcp.json;
+    "claude/settings.json".source = ./config/tools/claude/settings.json;
+  };
 
   # Enable and configure user programs
   # These are user-level installations and configurations

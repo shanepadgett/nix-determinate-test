@@ -1,0 +1,39 @@
+{
+  "theme": "Ayu Dark",
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_size": 14,
+  "ui_font_family": "JetBrains Mono",
+  "ui_font_size": 14,
+  "tab_size": 2,
+  "soft_wrap": "preferred_line_length",
+  "preferred_line_length": 120,
+  "format_on_save": "on",
+  "autosave": "after_delay",
+  "autosave_delay": 1000,
+  "show_whitespace": "boundary",
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+  "show_line_numbers": true,
+  "relative_line_numbers": false,
+  "highlight_line": true,
+  "bracket_pair_colorization": true,
+  "gutter_code_actions": true,
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true
+  },
+  "lsp": {
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          "importModuleSpecifier": "relative"
+        }
+      }
+    }
+  },
+  "file_types": {
+    "tsx": "TypeScript",
+    "jsx": "JavaScript"
+  }
+}

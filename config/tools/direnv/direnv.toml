@@ -1,0 +1,19 @@
+# Direnv configuration
+# This file configures direnv behavior globally
+
+[global]
+# Hide environment diff output to reduce noise
+hide_env_diff = true
+
+# Disable loading .envrc files from parent directories
+# Set to false if you want direnv to search parent directories
+disable_stdin = false
+
+# Log format for direnv messages
+# Empty string disables logging (already set in shell config)
+# log_format = ""
+
+# Global environment variables that should always be available
+# [global.env]
+# EDITOR = "code"
+# BROWSER = "open"

@@ -1,0 +1,106 @@
+# Shell aliases using modern CLI tools
+# This file is sourced by both .zshrc and .bashrc
+
+# Modern replacements for core utilities
+# Check if 'eza' (modern ls replacement) is installed
+if command -v eza &> /dev/null; then
+    alias ls='eza'                      # Modern replacement for basic ls
+    alias ll='eza -alF'                 # List all files in long format
+    alias la='eza -a'                   # List all files including hidden
+    alias l='eza -F'                    # List with file type indicators
+    alias lt='eza -a --tree --level=2'  # List as tree, 2 levels deep
+else
+    alias ll='ls -alF'                  # Fallback: List all files in long format
+    alias la='ls -A'                    # Fallback: List all except . and ..
+    alias l='ls -CF'                    # Fallback: List in columns with indicators
+fi
+
+# Check if 'bat' (modern cat replacement) is installed
+if command -v bat &> /dev/null; then
+    alias cat='bat'                     # Modern replacement with syntax highlighting
+    alias batp='bat --paging=always'    # Always use pager for output
+fi
+
+# Check if 'ripgrep' (modern grep replacement) is installed
+if command -v rg &> /dev/null; then
+    alias grep='rg'                     # Modern, faster text search
+    alias fgrep='rg'                    # Fixed-string search (faster)
+    alias egrep='rg'                    # Extended regex search
+fi
+
+# Directory navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias -- -='cd -'
+
+# Git shortcuts
+alias gs='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gpl='git pull'
+alias gl='git log --oneline'
+alias gd='git diff'
+alias gb='git branch'
+alias gco='git checkout'
+alias grh='git reset --hard'
+alias gclean='git clean -fdx'  # Remove untracked files and directories
+alias gnuke='git reset --hard && git clean -fd'  # Reset, remove changes and untracked files
+
+# Development commands shortcuts
+alias dr='delete-repo'  # Delete repository (both local and GitHub)
+alias dnuke='docker-cleanup'  # Completely nukes everything in docker
+
+# Modern replacements
+alias top='htop'
+
+# Common operations
+alias mkdir='mkdir -pv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias df='df -h'
+alias free='free -m'
+
+# Quick access
+alias hosts='sudo $EDITOR /etc/hosts'
+alias reload='source ~/.zshrc 2>/dev/null || source ~/.bashrc 2>/dev/null'
+alias path='echo -e ${PATH//:/\\n}'
+
+# Zoxide integration (if installed)
+if command -v zoxide &> /dev/null; then
+    alias cd='z'
+    alias cdi='zi'
+    alias cda='za'
+fi
+
+# FZF integration (if installed)
+if command -v fzf &> /dev/null; then
+    alias f='fzf'
+    alias fh='fzf --history'
+    alias fe='fzf --exact'
+    alias fzf-git-branch='git branch | fzf'
+    alias fzf-git-log='git log --oneline | fzf'
+    alias fzf-git-stash='git stash list | fzf'
+    alias fzf-history='history | fzf'
+    alias fzf-files='find . -type f | fzf'
+fi
+
+# Source configuration
+source "$HOME/.dotfiles/config/config.env"
+
+if [ -f "$SCRIPTS_DIR/dev-utils.sh" ]; then
+    # Ensure ~/.local/bin directory exists
+    [ ! -d ~/.local/bin ] && mkdir -p ~/.local/bin
+
+    # Create individual symlinks if they don't exist
+    [ ! -f ~/.local/bin/pr ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/pr
+    [ ! -f ~/.local/bin/dev ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/dev
+    [ ! -f ~/.local/bin/update-configs ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/update-configs
+    [ ! -f ~/.local/bin/reset-configs ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/reset-configs
+    [ ! -f ~/.local/bin/teardown ] && ln -sf "$INSTALL_DIR/scripts/dev-utils.sh" ~/.local/bin/teardown
+fi

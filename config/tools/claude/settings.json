@@ -1,0 +1,46 @@
+{
+  "cleanupPeriodDays": 90,
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "EDITOR": "code",
+    "GIT_EDITOR": "code --wait"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(deno task:*)",
+      "Bash(npm run:*)",
+      "Bash(cargo:*)",
+      "Bash(go:*)",
+      "Bash(git status:*)",
+      "Bash(git worktree:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(ripgrep:*)",
+      "Bash(find:*)",
+      "Bash(fd:*)",
+      "Bash(fzf:*)",
+      "Bash(bat:*)",
+      "Bash(eza:*)",
+      "Bash(zoxide:*)",
+      "Bash(htop:*)",
+      "Bash(jq:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:cli.github.com)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(:(){ :|:& };:)",
+      "Bash(dd if=/dev/zero of=/dev/*)",
+      "Bash(mkfs.*)",
+      "Bash(> /dev/sda*)"
+    ],
+    "defaultMode": "plan",
+    "disableBypassPermissionsMode": "disable"
+  },
+  "model": "sonnet",
+  "hooks": {
+    "PreToolUse": [],
+    "PostToolUse": []
+  }
+}

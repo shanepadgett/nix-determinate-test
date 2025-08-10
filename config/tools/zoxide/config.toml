@@ -1,0 +1,13 @@
+# Zoxide configuration
+
+# Use fzf for interactive selection
+export _ZO_FZF_OPTS="--height 40% --layout reverse --border --preview 'ls -la {2}'"
+
+# Exclude these directories from the database
+export _ZO_EXCLUDE_DIRS="/tmp,/var/tmp,/private/tmp"
+
+# Use case-insensitive matching
+export _ZO_CASE_INSENSITIVE=1
+
+# Show scores in interactive selection
+export _ZO_SHOW_SCORES=1
