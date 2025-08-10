@@ -16,10 +16,10 @@ pkgs.writeShellApplication {
     set -euo pipefail
 
     # Color output functions
-    info()    { printf "\033[36mℹ %s\033[0m\n" "$*"; }
-    warn()    { printf "\033[33m⚠ %s\033[0m\n" "$*"; }
-    error()   { printf "\033[31m✖ %s\033[0m\n" "$*" >&2; }
-    success() { printf "\033[32m✔ %s\033[0m\n" "$*"; }
+    info()    { printf "\033[36m[INFO] %s\033[0m\n" "$*"; }
+    warn()    { printf "\033[33m[WARN] %s\033[0m\n" "$*"; }
+    error()   { printf "\033[31m[ERROR] %s\033[0m\n" "$*" >&2; }
+    success() { printf "\033[32m[SUCCESS] %s\033[0m\n" "$*"; }
     header()  { printf "\n\033[1m== %s ==\033[0m\n" "$*"; }
 
     # Check if git user configuration is set
