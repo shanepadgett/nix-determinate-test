@@ -114,27 +114,27 @@ pkgs.writeShellApplication {
     # Stop all running containers
     run_cleanup "Stopping all running containers" \
       "docker ps -q" \
-      'docker stop $(docker ps -q)'
+      "docker stop \$(docker ps -q)"
 
     # Remove all containers (including stopped ones)
     run_cleanup "Removing all containers" \
       "docker ps -aq" \
-      'docker rm $(docker ps -aq)'
+      "docker rm \$(docker ps -aq)"
 
     # Remove all images
     run_cleanup "Removing all images" \
       "docker images -q" \
-      'docker rmi $(docker images -q)'
+      "docker rmi \$(docker images -q)"
 
     # Remove all volumes (this will delete any persistent data)
     run_cleanup "Removing all volumes" \
       "docker volume ls -q" \
-      'docker volume rm $(docker volume ls -q)'
+      "docker volume rm \$(docker volume ls -q)"
 
     # Remove all custom networks (except default ones)
     run_cleanup "Removing all custom networks" \
       "docker network ls -q --filter type=custom" \
-      'docker network rm $(docker network ls -q --filter type=custom)'
+      "docker network rm \$(docker network ls -q --filter type=custom)"
 
     info "Cleaning up build cache and unused resources..."
     docker system prune -a --volumes -f
