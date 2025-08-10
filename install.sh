@@ -22,17 +22,15 @@ print_error() {
     echo -e "\033[1;31m✗ $1\033[0m"
 }
 
-if [ ! -t 0 ] && [ -e /dev/tty ]; then
-  print_step "Attaching to your terminal for interactive prompts…"
-  exec </dev/tty
-fi
+run_with_tty() {
+  if [ -t 0 ]; then "$@"; elif [ -e /dev/tty ]; then "$@" </dev/tty; else "$@"; fi
+}
 
 print_step "Installing Homebrew..."
 if command_exists brew; then
     print_success "Homebrew is already installed"
 else
-    sudo -v
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    run_with_tty /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # Add Homebrew to PATH for the current session
     if [[ -f "/opt/homebrew/bin/brew" ]]; then
