@@ -4,14 +4,17 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     mac-app-util = {
       url = "github:hraban/mac-app-util";
     };
@@ -23,36 +26,43 @@
         nix.enable = false;
         nixpkgs.hostPlatform = "aarch64-darwin";
         nixpkgs.config.allowUnfree = true;
+
         users.users.shanepadgett = {
           name = "shanepadgett";
           home = "/Users/shanepadgett";
         };
+
         programs.zsh.enable = true;
+
         environment.systemPackages = with pkgs; [
           git
           bat
           ripgrep
         ];
+
         system.stateVersion = 6;
 
+        # Home Manager user config
         home-manager.users.shanepadgett = { pkgs, ... }: {
+          # Import mac-app-util's Home Manager module here
+          imports = [ mac-app-util.homeManagerModules.default ];
+
           home.stateVersion = "25.05";
           nixpkgs.config.allowUnfree = true;
+
           home.file.".gitconfig".source = ./config/gitconfig;
+
           programs.git.enable = true;
           programs.vscode.enable = true;
         };
       };
-      hmLib = home-manager.lib;
     in {
       darwinConfigurations.default = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
           home-manager.darwinModules.home-manager
           mac-app-util.darwinModules.default
-          mac-app-util.homeManagerModules.default
         ];
-        extraSpecialArgs = { hm = hmLib; };
       };
     };
 }
