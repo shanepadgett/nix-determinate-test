@@ -26,11 +26,19 @@ run_with_tty() {
   if [ -t 0 ]; then "$@"; elif [ -e /dev/tty ]; then "$@" </dev/tty; else "$@"; fi
 }
 
+print_step "Requesting admin access (sudo)…"
+run_with_tty sudo -v || { print_error "Need sudo privileges"; exit 1; }
+# Keep the sudo timestamp updated until this script exits
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+trap 'kill $! 2>/dev/null || true' EXIT
+print_success "Sudo session active"
+
+
 print_step "Installing Homebrew..."
 if command_exists brew; then
     print_success "Homebrew is already installed"
 else
-    run_with_tty /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # Add Homebrew to PATH for the current session
     if [[ -f "/opt/homebrew/bin/brew" ]]; then
