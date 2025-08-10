@@ -23,8 +23,7 @@
     enable = true;
     casks = [ "1password" "bruno" ];
     brews = [ "jq" ];
-    taps = [ "homebrew/cask-versions" ];
-    # onActivation.cleanup = "uninstall";
+    onActivation.cleanup = "uninstall";
   };
 
   system.stateVersion = 6;
