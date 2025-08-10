@@ -70,6 +70,12 @@
       }
     );
 
+    # Configure formatter for 'nix fmt' command
+    # This enables running 'nix fmt' to format all Nix files in the project
+    formatter = forAllSystems (system:
+      nixpkgs.legacyPackages.${system}.nixfmt-rfc-style
+    );
+
     # darwinConfigurations defines system configurations for macOS
     # 'default' is the name of this configuration - you could have multiple
     # You'd activate this with: darwin-rebuild switch --flake .#default

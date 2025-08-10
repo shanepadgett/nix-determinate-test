@@ -50,9 +50,10 @@
   # 'with pkgs;' brings all packages into scope so we can reference them directly
   # These packages are installed to /run/current-system/sw/bin/
   environment.systemPackages = with pkgs; [
-    git       # Version control system - essential for development
-    bat       # A cat clone with syntax highlighting and Git integration
-    ripgrep   # Fast text search tool (rg command) - better than grep
+    git              # Version control system - essential for development
+    bat              # A cat clone with syntax highlighting and Git integration
+    ripgrep          # Fast text search tool (rg command) - better than grep
+    nixfmt-rfc-style # Official Nix code formatter (new RFC-style version)
   ];
 
   # Homebrew integration - manages packages not available in nixpkgs

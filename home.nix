@@ -80,6 +80,14 @@ in
   # You can add git.userName, git.userEmail, etc. here
   programs.git.enable = true;
 
+  # Enable direnv for automatic environment loading
+  # This provides better integration than manual shell hooks
+  programs.direnv = {
+    enable = true;
+    # Enable nix-direnv for better Nix flake support and caching
+    nix-direnv.enable = true;
+  };
+
   # Enable Visual Studio Code for this user
   # This installs VS Code and allows Home Manager to manage its configuration
   # You can add extensions, settings, keybindings, etc. through Home Manager

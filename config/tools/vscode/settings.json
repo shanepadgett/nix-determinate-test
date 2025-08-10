@@ -55,7 +55,11 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[markdown]": {
-        "editor.wordWrap": "on",
+        "editor.wordWrap": "on"
+    },
+    "[nix]": {
+        "editor.defaultFormatter": "jnoortheen.nix-ide",
+        "editor.formatOnSave": true
     },
     //***********************
     // Copilot
