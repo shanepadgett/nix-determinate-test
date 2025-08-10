@@ -19,6 +19,7 @@
       configuration = { pkgs, ... }: {
         nix.enable = false;
         nixpkgs.hostPlatform = "aarch64-darwin";
+        nixpkgs.config.allowUnfree = true;
 
         users.users.shanepadgett = {
           name = "shanepadgett";
