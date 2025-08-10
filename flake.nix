@@ -23,12 +23,10 @@
         nix.enable = false;
         nixpkgs.hostPlatform = "aarch64-darwin";
         nixpkgs.config.allowUnfree = true;
-
         users.users.shanepadgett = {
           name = "shanepadgett";
           home = "/Users/shanepadgett";
         };
-
         programs.zsh.enable = true;
         environment.systemPackages = with pkgs; [
           git
@@ -37,12 +35,10 @@
         ];
         system.stateVersion = 6;
 
-        # Add Home Manager module
         home-manager.users.shanepadgett = { pkgs, ... }: {
           home.stateVersion = "25.05";
           nixpkgs.config.allowUnfree = true;
           home.file.".gitconfig".source = ./config/gitconfig;
-          # home.file.".config/Code/User/settings.json".source = ./config/vscode-settings.json;
           programs.git.enable = true;
           programs.vscode.enable = true;
         };
@@ -51,11 +47,12 @@
       darwinConfigurations.default = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
-          ({ config, pkgs, ... }: { _module.args.hm = home-manager; })
           home-manager.darwinModules.home-manager
           mac-app-util.darwinModules.default
           mac-app-util.homeManagerModules.default
         ];
+        # Pass Home Manager as 'hm' for mac-app-util
+        specialArgs = { hm = home-manager; };
       };
     };
 }
