@@ -50,10 +50,17 @@
   # 'with pkgs;' brings all packages into scope so we can reference them directly
   # These packages are installed to /run/current-system/sw/bin/
   environment.systemPackages = with pkgs; [
-    git              # Version control system - essential for development
-    bat              # A cat clone with syntax highlighting and Git integration
-    ripgrep          # Fast text search tool (rg command) - better than grep
-    nixfmt-rfc-style # Official Nix code formatter (new RFC-style version)
+    python311
+    uv
+    bat
+    direnv
+    eza
+    fzf
+    gh
+    htop
+    jq
+    ripgrep
+    zoxide
   ];
 
   # Homebrew integration - manages packages not available in nixpkgs
@@ -66,15 +73,24 @@
     # Casks are GUI applications distributed through Homebrew
     # These are typically .app bundles or installer packages
     casks = [
-      "1password"  # Password manager application
-      "bruno"      # API testing tool (alternative to Postman)
+      "1password"
+      "1password-cli"
+      "brave-browser"
+      "bruno"
+      "discord"
+      "ghostty"
+      "logi-options-plus"
+      "orbstack"
+      "raycast"
+      "rectangle"
+      "voiceink"
+      "warp"
+      "zed"
     ];
 
     # Brews are command-line tools and libraries
     # Use this for tools not available in nixpkgs or when you need Homebrew's version
-    brews = [
-      "jq"  # JSON processor - could also use pkgs.jq, but showing Homebrew option
-    ];
+    # brews = [];
 
     # Cleanup behavior when rebuilding the system
     # "uninstall" removes packages not declared in this config

@@ -2,11 +2,12 @@
     //***********************
     // General
     //***********************
-    "editor.detectIndentation": true,
+    "diffEditor.ignoreTrimWhitespace": false,
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
     },
-    "editor.fontSize": 14,
+    "editor.detectIndentation": true,
+    "editor.fontSize": 12,
     "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
     "editor.formatOnSave": true,
     "editor.guides.bracketPairs": true,
@@ -20,17 +21,16 @@
     "emmet.includeLanguages": {
         "phoenix-heex": "html"
     },
-    "extensions.autoUpdate": true,
     "extensions.autoCheckUpdates": true,
+    "extensions.autoUpdate": true,
     "extensions.ignoreRecommendations": true,
     "files.autoSave": "afterDelay",
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
-    "terminal.integrated.fontSize": 14,
+    "remote.autoForwardPortsSource": "hybrid",
+    "remote.containers.copyGitConfig": true,
+    "terminal.integrated.fontSize": 12,
     "terminal.integrated.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
-    "window.restoreWindows": "none",
-    "workbench.colorTheme": "GitHub Dark Default",
-    "workbench.editor.openPositioning": "left",
     "terminal.integrated.ignoreProcessNames": [
         "starship",
         "oh-my-posh",
@@ -38,10 +38,11 @@
         "zsh",
         "opencode"
     ],
-    "diffEditor.ignoreTrimWhitespace": false,
+    "window.restoreWindows": "none",
+    "window.zoomLevel": 1,
     "workbench.activityBar.location": "top",
-    "remote.autoForwardPortsSource": "hybrid",
-    "remote.containers.copyGitConfig": true,
+    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.editor.openPositioning": "left",
     //***********************
     // Languages
     //***********************
@@ -55,25 +56,22 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[markdown]": {
-        "editor.wordWrap": "on"
-    },
-    "[nix]": {
-        "editor.defaultFormatter": "jnoortheen.nix-ide",
-        "editor.formatOnSave": true
+        "editor.wordWrap": "on",
     },
     //***********************
     // Copilot
     //***********************
-    "chat.commandCenter.enabled": false,
     "chat.agent.enabled": false,
-    "chat.mcp.enabled": false,
+    "chat.commandCenter.enabled": false,
+    "chat.editor.fontSize": 10,
     "chat.mcp.discovery.enabled": false,
+    "chat.mcp.enabled": false,
     //***********************
     // Augment
     //***********************
-    "augment.nextEdit.enableBackgroundSuggestions": false,
-    "augment.completions.enableAutomaticCompletions": false,
     "augment.chat.userGuidelines": "# User Guidelines\n\n## Git\n- **DO NOT**: Add, commit or push any changes. The user will handle this.\n\n## Communication and responses\n- Treat the user as a collaborator, not a customer — optimize for the best outcome, not agreement.\n- Ask clarifying questions if context is missing or ambiguous. Don’t assume.\n- Push back on bad ideas. Suggest better alternatives with reasoning.\n- Share your thought process out loud — include hypotheses, tradeoffs, and critiques of your own proposals.\n- Favor precision over politeness. Be respectful, but don’t sugar-coat.\n- Call out constraints, risks, or downstream impacts — especially those the user may not see.\n- Don't blindly repeat instructions — validate them first, then execute or propose a better path.",
+    "augment.completions.enableAutomaticCompletions": false,
+    "augment.nextEdit.enableBackgroundSuggestions": false,
     //***********************
     // Kilo Code
     //***********************
