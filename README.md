@@ -36,6 +36,8 @@ Rebuild and apply (nix-darwin installed)
 sudo darwin-rebuild switch --flake .#default
 ```
 
+**Manual Setup Required**: Import voiceink settings manually since they are not included in the config folder. You'll need to configure these settings through your voiceink application before proceeding. The settings are location in [./config/tools/voiceink/VoiceInk_Settings_Backup.json](./config/tools/voiceink/VoiceInk_Settings_Backup.json)
+
 ## Using Shell Utilities
 
 After applying the configuration, the shell utilities will be available in your PATH:

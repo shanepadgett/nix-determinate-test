@@ -1,0 +1,39 @@
+{
+  "generalSettings" : {
+    "audioRetentionPeriod" : 0,
+    "selectedHotkey2RawValue" : "none",
+    "launchAtLoginEnabled" : true,
+    "isSoundFeedbackEnabled" : true,
+    "useAppleScriptPaste" : false,
+    "recorderType" : "mini",
+    "isAudioCleanupEnabled" : false,
+    "selectedHotkey1RawValue" : "rightCommand",
+    "isSystemMuteEnabled" : true,
+    "isPauseMediaEnabled" : true,
+    "isTextFormattingEnabled" : true,
+    "isMenuBarOnly" : true
+  },
+  "customEmojis" : [
+
+  ],
+  "customCloudModels" : [
+
+  ],
+  "version" : "1.46",
+  "customPrompts" : [
+
+  ],
+  "powerModeConfigs" : [
+
+  ],
+  "defaultPowerModeConfig" : {
+    "selectedLanguage" : "en",
+    "isAutoSendEnabled" : false,
+    "isAIEnhancementEnabled" : false,
+    "useScreenCapture" : false,
+    "selectedTranscriptionModelName" : "parakeet-tdt-0.6b",
+    "emoji" : "⚙️",
+    "id" : "9558E67E-A9B8-46F3-A672-42982A45D73D",
+    "name" : "Default Configuration"
+  }
+}
