@@ -119,22 +119,22 @@
         "/Applications/Discord.app"
         "/Applications/OrbStack.app"
       ];
-    }
+    };
 
     # Trackpad Configuration
     trackpad = {
       Clicking = true;
-    }
+    };
 
     # Apple Multitouch Trackpad Configuration
     "com.apple.AppleMultitouchTrackpad" = {
       TrackpadThreeFingerDrag = true;
-    }
+    };
 
     # Apple Bluetooth Multitouch Trackpad Configuration
     "com.apple.driver.AppleBluetoothMultitouch.trackpad" = {
       TrackpadThreeFingerDrag = true;
-    }
+    };
 
     # Finder Configuration
     finder = {
@@ -142,12 +142,12 @@
       ShowStatusBar = true;
       FXDefaultSearchScope = "SCcf";
       FXEnableExtensionChangeWarning = false;
-    }
+    };
 
     # Desktop Configuration
     "com.apple.WindowManager" = {
       EnableStandardClickToShowDesktop = false;
-    }
+    };
 
     # Global Domain settings
     NSGlobalDomain = {
