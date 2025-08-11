@@ -124,15 +124,6 @@
     # Trackpad Configuration
     trackpad = {
       Clicking = true;
-    };
-
-    # Apple Multitouch Trackpad Configuration
-    "com.apple.AppleMultitouchTrackpad" = {
-      TrackpadThreeFingerDrag = true;
-    };
-
-    # Apple Bluetooth Multitouch Trackpad Configuration
-    "com.apple.driver.AppleBluetoothMultitouch.trackpad" = {
       TrackpadThreeFingerDrag = true;
     };
 
