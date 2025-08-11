@@ -33,6 +33,10 @@
     changed = green
     untracked = cyan
 
+[user]
+    name = Shane Padgett
+    email = contact@shanepadgett.dev
+
 # Include local configuration (user.name, user.email, etc.)
 [include]
     path = ~/.gitconfig.local
