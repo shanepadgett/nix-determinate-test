@@ -135,8 +135,8 @@
       FXEnableExtensionChangeWarning = false;
     };
 
-    # Desktop Configuration
-    "com.apple.WindowManager" = {
+    # Window Manager Configuration
+    WindowManager = {
       EnableStandardClickToShowDesktop = false;
     };
 
