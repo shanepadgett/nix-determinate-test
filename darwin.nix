@@ -111,7 +111,7 @@
       minimize-to-application = true;
       persistent-apps = [
         "/Applications/Brave Browser.app"
-        "/Applications/Home Manager Trampolines/Visual Studio Code.app"
+        "/Applications/Home Manager Trampolines/Visual Studio Code"
         "/Applications/Zed.app"
         "/Applications/Warp.app"
         "/Applications/Bruno.app"
