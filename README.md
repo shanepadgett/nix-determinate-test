@@ -1,4 +1,4 @@
-# nix-determinate-test
+# Shane's dotfiles
 
 A test repository for experimenting with Nix configurations and setups, featuring a comprehensive shell utilities package.
 
@@ -23,7 +23,7 @@ See [shell-utils/README.md](shell-utils/README.md) for detailed documentation.
 
 Bootstrap:
 ```zsh
-curl -fsSL https://raw.githubusercontent.com/shanepadgett/nix-determinate-test/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/shanepadgett/dotfiles/main/install.sh | bash
 ```
 
 Apply the config (nix-darwin not install)

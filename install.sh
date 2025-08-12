@@ -65,8 +65,8 @@ else
 fi
 
 print_step "Cloning the repository..."
-REPO_URL="https://github.com/shanepadgett/nix-determinate-test.git"
-REPO_DIR="nix-determinate-test"
+REPO_URL="https://github.com/shanepadgett/dotfiles.git"
+REPO_DIR=".dotfiles"
 
 if [[ -d "$REPO_DIR" ]]; then
     print_success "Repository directory already exists"
