@@ -73,7 +73,7 @@ if [[ -d "$REPO_DIR" ]]; then
     cd "$REPO_DIR"
     git pull origin main || true  # Update if possible, but don't fail if it can't
 else
-    git clone "$REPO_URL"
+    git clone "$REPO_URL" "$REPO_DIR"
     cd "$REPO_DIR"
     print_success "Repository cloned successfully"
 fi
