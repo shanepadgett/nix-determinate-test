@@ -73,12 +73,12 @@ fi
 
 print_step "Installing Homebrew apps from Brewfile..."
 if [[ -f "Brewfile" ]]; then
-    if brew bundle --no-lock --file="./Brewfile"; then
+    if brew bundle --file="./Brewfile"; then
         print_success "Homebrew apps installed via Brewfile"
     else
         print_error "brew bundle failed; attempting 'brew update' and retry"
         brew update || true
-        brew bundle --no-lock --file="./Brewfile"
+        brew bundle --file="./Brewfile"
     fi
 else
     print_error "Brewfile not found in repository root"
