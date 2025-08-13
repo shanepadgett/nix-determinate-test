@@ -6,7 +6,6 @@ type: "always_apply"
 - When looking things up online, do not use dates. Simply look for the latest stuff without specifying dates or years.
 - Ask question if you find gaps in my reasoning.
 - **ALWAYS**: Plan first (out loud), execute second.
-- **DO NOT** Commit or push code on your own.
 
 # Nix
 - Run validations after change

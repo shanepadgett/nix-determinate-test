@@ -18,6 +18,8 @@
 let
   # Import shell utilities from this flake
   shellUtils = import ./shell-utils { inherit pkgs; };
+  # Absolute path to this dotfiles repo for out-of-store symlinks
+  dotfiles = "${config.home.homeDirectory}/.dotfiles";
 in
 {
   # Basic user identification - must match the system user
@@ -51,34 +53,41 @@ in
     inputs.mac-app-util.homeManagerModules.default
   ];
 
-  # Manage dotfiles and app configs by symlinking from ./config
-  # Grouping under home.file and xdg.configFile keeps this concise and organized
+  # Manage dotfiles and app configs by symlinking from the repo (out-of-store)
+  # Use mkOutOfStoreSymlink so links point directly to files in ~/.dotfiles
   home.file = {
     # Dotfiles in $HOME
-    ".gitconfig".source = ./config/tools/gitconfig;
-    ".zshrc".source = ./config/shell/zshrc;
-    ".bashrc".source = ./config/shell/bashrc;
-    ".aliases".source = ./config/shell/aliases;
-    ".exports".source = ./config/shell/exports;
+    ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/tools/gitconfig";
+    ".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/shell/zshrc";
+    ".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/shell/bashrc";
+    ".aliases".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/shell/aliases";
+    ".exports".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/shell/exports";
 
     # Tool-specific dotfiles in $HOME
-    ".ripgreprc".source = ./config/tools/ripgreprc;
+    ".ripgreprc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/tools/ripgreprc";
 
     # Apps that don't follow XDG on macOS (VS Code)
     # This will create ~/Library/Application Support/Code/User/settings.json
-    "Library/Application Support/Code/User/settings.json".source = ./config/tools/vscode/settings.json;
+    "Library/Application Support/Code/User/settings.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/tools/vscode/settings.json";
   };
 
   # XDG-configured apps (files live under ~/.config)
   xdg.configFile = {
-    "direnv/direnv.toml".source = ./config/tools/direnv/direnv.toml;
-    "ghostty/config".source = ./config/tools/ghostty/config;
-    "zed/settings.json".source = ./config/tools/zed/settings.json;
-    "zoxide/config.toml".source = ./config/tools/zoxide/config.toml;
+    "direnv/direnv.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/tools/direnv/direnv.toml";
+    "ghostty/config".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/tools/ghostty/config";
+    "zed/settings.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/tools/zed/settings.json";
+    "zoxide/config.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/tools/zoxide/config.toml";
 
     # Claude app/editor configs (adjust if your install expects a different path)
-    "claude/mcp.json".source = ./config/tools/claude/mcp.json;
-    "claude/settings.json".source = ./config/tools/claude/settings.json;
+    "claude/mcp.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/tools/claude/mcp.json";
+    "claude/settings.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfiles}/config/tools/claude/settings.json";
   };
 
   # Enable and configure user programs
