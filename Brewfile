@@ -1,0 +1,19 @@
+cask_args appdir: "/Applications"
+
+tap "homebrew/bundle"
+
+cask "1password"
+cask "1password-cli"
+cask "brave-browser"
+cask "bruno"
+cask "discord"
+cask "ghostty"
+cask "logi-options-plus"
+cask "obsidian"
+cask "orbstack"
+cask "raycast"
+cask "rectangle"
+cask "voiceink"
+cask "warp"
+cask "zed"
+

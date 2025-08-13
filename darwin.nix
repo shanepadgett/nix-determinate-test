@@ -63,41 +63,7 @@
     zoxide
   ];
 
-  # Homebrew integration - manages packages not available in nixpkgs
-  # Homebrew is still useful for some macOS-specific applications
-  homebrew = {
-    # Enable Homebrew management through nix-darwin
-    # This will install Homebrew if it's not already present
-    enable = true;
 
-    # Casks are GUI applications distributed through Homebrew
-    # These are typically .app bundles or installer packages
-    casks = [
-      "1password"
-      "1password-cli"
-      "brave-browser"
-      "bruno"
-      "discord"
-      "ghostty"
-      "logi-options-plus"
-      "obsidian"
-      "orbstack"
-      "raycast"
-      "rectangle"
-      "voiceink"
-      "warp"
-      "zed"
-    ];
-
-    # Brews are command-line tools and libraries
-    # Use this for tools not available in nixpkgs or when you need Homebrew's version
-    # brews = [];
-
-    # Cleanup behavior when rebuilding the system
-    # "uninstall" removes packages not declared in this config
-    # Other options: "none" (no cleanup) or "zap" (more aggressive cleanup)
-    onActivation.cleanup = "uninstall";
-  };
 
   system.defaults = {
     # Dock Configuration

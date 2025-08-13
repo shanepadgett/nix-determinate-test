@@ -50,20 +50,6 @@ else
     print_success "Homebrew installed successfully"
 fi
 
-print_step "Installing Nix with Determinate Systems installer..."
-if command_exists nix; then
-    print_success "Nix is already installed"
-else
-    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate --no-confirm --force
-
-    # Source the nix profile to make nix available in current session
-    if [[ -f "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]]; then
-        source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-    fi
-
-    print_success "Nix installed successfully"
-fi
-
 print_step "Cloning the repository..."
 REPO_URL="https://github.com/shanepadgett/dotfiles.git"
 REPO_DIR=".dotfiles"
@@ -76,6 +62,40 @@ else
     git clone "$REPO_URL" "$REPO_DIR"
     cd "$REPO_DIR"
     print_success "Repository cloned successfully"
+fi
+
+# Ensure Homebrew is available in current session
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f "/usr/local/bin/brew" ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+print_step "Installing Homebrew apps from Brewfile..."
+if [[ -f "Brewfile" ]]; then
+    if brew bundle --no-lock --file="./Brewfile"; then
+        print_success "Homebrew apps installed via Brewfile"
+    else
+        print_error "brew bundle failed; attempting 'brew update' and retry"
+        brew update || true
+        brew bundle --no-lock --file="./Brewfile"
+    fi
+else
+    print_error "Brewfile not found in repository root"
+fi
+
+print_step "Installing Nix with Determinate Systems installer..."
+if command_exists nix; then
+    print_success "Nix is already installed"
+else
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate --no-confirm --force
+
+    # Source the nix profile to make nix available in current session
+    if [[ -f "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]]; then
+        source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+    fi
+
+    print_success "Nix installed successfully"
 fi
 
 print_step "Applying nix-darwin configuration..."
