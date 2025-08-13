@@ -59,6 +59,7 @@
     uv
     bat
     direnv
+    devenv
     eza
     fzf
     gh
