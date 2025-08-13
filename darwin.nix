@@ -4,7 +4,12 @@
 # - pkgs: the nixpkgs package set (contains all available packages)
 # - inputs: the flake inputs (needed for nix-vscode-extensions overlay)
 # - ...: any additional arguments (we don't use them here, hence the ellipsis)
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 # Return an attribute set that defines our system configuration
 {
@@ -59,11 +64,10 @@
     gh
     htop
     jq
+    nixfmt-rfc-style
     ripgrep
     zoxide
   ];
-
-
 
   system.defaults = {
     # Dock Configuration

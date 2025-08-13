@@ -6,7 +6,13 @@
 # - inputs: the flake inputs passed from flake.nix (includes mac-app-util, etc.)
 # - self: reference to this flake for accessing shell utilities
 # - ...: any additional arguments
-{ config, pkgs, inputs, self, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  self,
+  ...
+}:
 
 # Return an attribute set that defines our user configuration
 let
@@ -30,9 +36,12 @@ in
   home.stateVersion = "25.05";
 
   # Install shell utilities as user packages
-  home.packages = with pkgs; [
-    # Shell utilities from this flake
-  ] ++ (builtins.attrValues shellUtils);
+  home.packages =
+    with pkgs;
+    [
+      # Shell utilities from this flake
+    ]
+    ++ (builtins.attrValues shellUtils);
 
   # Import additional Home Manager modules
   # This extends Home Manager's capabilities with extra functionality
@@ -92,21 +101,24 @@ in
   # This installs VS Code and allows Home Manager to manage its configuration
   # You can add extensions, settings, keybindings, etc. through Home Manager
   programs.vscode = {
-      enable = true;
-      package = pkgs.vscode;
-      profiles.default.extensions = with pkgs.vscode-extensions; [
-          # Extensions from nixpkgs (curated) - these are confirmed available
-          editorconfig.editorconfig
-          github.github-vscode-theme
-      ] ++ [
-          # Extensions from marketplace (using full path)
-          # Note: These will be available after the overlay is properly loaded
-          pkgs.vscode-marketplace.augment.vscode-augment
-          pkgs.vscode-marketplace.anthropic.claude-code
-          pkgs.vscode-marketplace.kilocode.kilo-code
-          pkgs.vscode-marketplace.mkhl.direnv
-          pkgs.vscode-marketplace.arrterian.nix-env-selector
-          pkgs.vscode-marketplace.jnoortheen.nix-ide
+    enable = true;
+    package = pkgs.vscode;
+    profiles.default.extensions =
+      with pkgs.vscode-extensions;
+      [
+        # Extensions from nixpkgs (curated) - these are confirmed available
+        editorconfig.editorconfig
+        github.github-vscode-theme
+      ]
+      ++ [
+        # Extensions from marketplace (using full path)
+        # Note: These will be available after the overlay is properly loaded
+        pkgs.vscode-marketplace.augment.vscode-augment
+        pkgs.vscode-marketplace.anthropic.claude-code
+        pkgs.vscode-marketplace.kilocode.kilo-code
+        pkgs.vscode-marketplace.mkhl.direnv
+        pkgs.vscode-marketplace.arrterian.nix-env-selector
+        pkgs.vscode-marketplace.jnoortheen.nix-ide
       ];
   };
 }

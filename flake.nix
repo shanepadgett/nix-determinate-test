@@ -47,75 +47,88 @@
   # It receives all inputs as arguments and returns an attribute set
   # The '@' syntax captures all inputs in the 'inputs' variable while also
   # destructuring specific ones (self, nix-darwin, etc.) for easy access
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, ... }:
-  let
-    # Define supported systems
-    systems = [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" "aarch64-linux" ];
-
-    # Helper to generate outputs for each system
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in
-  {
-    # Expose shell utilities as packages for each system
-    packages = forAllSystems (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-        shellUtils = import ./shell-utils { inherit pkgs; };
-      in
-      shellUtils // {
-        # Provide a combined package with all utilities
-        default = pkgs.buildEnv {
-          name = "shell-utils";
-          paths = builtins.attrValues shellUtils;
-        };
-      }
-    );
-
-    # Configure formatter for 'nix fmt' command
-    # This enables running 'nix fmt' to format all Nix files in the project
-    formatter = forAllSystems (system:
-      nixpkgs.legacyPackages.${system}.nixfmt-rfc-style
-    );
-
-    # darwinConfigurations defines system configurations for macOS
-    # 'default' is the name of this configuration - you could have multiple
-    # You'd activate this with: darwin-rebuild switch --flake .#default
-    darwinConfigurations.default = nix-darwin.lib.darwinSystem {
-      # modules is a list of configuration modules to combine
-      # Each module contributes settings to the final system configuration
-      modules = [
-        # Import our main system configuration from darwin.nix
-        # This file contains system-wide settings like packages, services
-        # Pass inputs to darwin.nix so it can access nix-vscode-extensions
-        { _module.args = { inherit inputs; }; }
-        ./darwin.nix
-
-        # Add home-manager as a darwin module
-        # This integrates user configuration management into system config
-        home-manager.darwinModules.home-manager
-
-        # Inline module to configure home-manager specifically
-        {
-          # Configure home-manager for the user 'shanepadgett'
-          # Import user configuration from home.nix
-          home-manager.users.shanepadgett = import ./home.nix;
-
-          # Use system-wide package definitions instead of user-specific ones
-          # This ensures consistency and reduces duplication
-          home-manager.useGlobalPkgs = true;
-
-          # Install packages to user profile instead of system profile
-          # This keeps user packages separate from system packages
-          home-manager.useUserPackages = true;
-
-          # Pass the flake inputs to home-manager modules
-          # This allows home.nix to access things like mac-app-util and shell utilities
-          home-manager.extraSpecialArgs = { inherit inputs self; };
-        }
-
-        # Include mac-app-util's darwin module for macOS app management
-        inputs.mac-app-util.darwinModules.default
+  outputs =
+    inputs@{
+      self,
+      nix-darwin,
+      nixpkgs,
+      home-manager,
+      mac-app-util,
+      ...
+    }:
+    let
+      # Define supported systems
+      systems = [
+        "x86_64-darwin"
+        "aarch64-darwin"
+        "x86_64-linux"
+        "aarch64-linux"
       ];
+
+      # Helper to generate outputs for each system
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in
+    {
+      # Expose shell utilities as packages for each system
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          shellUtils = import ./shell-utils { inherit pkgs; };
+        in
+        shellUtils
+        // {
+          # Provide a combined package with all utilities
+          default = pkgs.buildEnv {
+            name = "shell-utils";
+            paths = builtins.attrValues shellUtils;
+          };
+        }
+      );
+
+      # Configure formatter for 'nix fmt' command
+      # This enables running 'nix fmt' to format all Nix files in the project
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+
+      # darwinConfigurations defines system configurations for macOS
+      # 'default' is the name of this configuration - you could have multiple
+      # You'd activate this with: darwin-rebuild switch --flake .#default
+      darwinConfigurations.default = nix-darwin.lib.darwinSystem {
+        # modules is a list of configuration modules to combine
+        # Each module contributes settings to the final system configuration
+        modules = [
+          # Import our main system configuration from darwin.nix
+          # This file contains system-wide settings like packages, services
+          # Pass inputs to darwin.nix so it can access nix-vscode-extensions
+          { _module.args = { inherit inputs; }; }
+          ./darwin.nix
+
+          # Add home-manager as a darwin module
+          # This integrates user configuration management into system config
+          home-manager.darwinModules.home-manager
+
+          # Inline module to configure home-manager specifically
+          {
+            # Configure home-manager for the user 'shanepadgett'
+            # Import user configuration from home.nix
+            home-manager.users.shanepadgett = import ./home.nix;
+
+            # Use system-wide package definitions instead of user-specific ones
+            # This ensures consistency and reduces duplication
+            home-manager.useGlobalPkgs = true;
+
+            # Install packages to user profile instead of system profile
+            # This keeps user packages separate from system packages
+            home-manager.useUserPackages = true;
+
+            # Pass the flake inputs to home-manager modules
+            # This allows home.nix to access things like mac-app-util and shell utilities
+            home-manager.extraSpecialArgs = { inherit inputs self; };
+          }
+
+          # Include mac-app-util's darwin module for macOS app management
+          inputs.mac-app-util.darwinModules.default
+        ];
+      };
     };
-  };
 }

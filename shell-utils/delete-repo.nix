@@ -8,7 +8,7 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [
     git
     gh
-    coreutils    # realpath
+    coreutils # realpath
     gnugrep
   ];
   text = ''
