@@ -68,7 +68,16 @@
     nixfmt-rfc-style
     ripgrep
     zoxide
+    cachix
   ];
+
+  # Since we use the Determinate Systems installer (nix.enable = false),
+  # their /etc/nix/nix.conf includes nix.custom.conf. Use that instead
+  # so tools like devenv can auto-manage Cachix caches (requires trusted user).
+  environment.etc."nix/nix.custom.conf".text = ''
+    # Allow devenv (via Cachix) to auto-manage caches for this user
+    trusted-users = root shanepadgett
+  '';
 
   system.defaults = {
     # Dock Configuration
