@@ -128,6 +128,7 @@ in
         pkgs.vscode-marketplace.mkhl.direnv
         pkgs.vscode-marketplace.arrterian.nix-env-selector
         pkgs.vscode-marketplace.jnoortheen.nix-ide
+        pkgs.vscode-marketplace.davidanson.vscode-markdownlint
       ];
   };
 }

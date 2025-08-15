@@ -7,6 +7,8 @@ in
   "git-init" = callPackage ./git-init.nix { };
   gcp = callPackage ./gcp.nix { };
 
+  "rebuild-darwin" = callPackage ./rebuild-darwin.nix { };
+
   # Repository management
   "delete-repo" = callPackage ./delete-repo.nix { };
 

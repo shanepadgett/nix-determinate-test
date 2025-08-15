@@ -22,11 +22,13 @@ See [shell-utils/README.md](shell-utils/README.md) for detailed documentation.
 ## Getting Started
 
 Bootstrap (one-time):
+
 ```zsh
 curl -fsSL https://raw.githubusercontent.com/shanepadgett/dotfiles/main/install.sh | bash
 ```
 
 What the bootstrap does:
+
 - Installs Homebrew
 - Clones this repository to ~/.dotfiles
 - Installs GUI apps via Brewfile (root of repo)
@@ -34,21 +36,26 @@ What the bootstrap does:
 - Applies nix-darwin configuration
 
 Rebuild and apply (after nix-darwin installed):
+
 ```zsh
 sudo darwin-rebuild switch --flake .#default
 ```
 
 Manual Brewfile maintenance:
+
 - Update Brewfile from current machine state:
+
   ```bash
   brew bundle dump --force --file=Brewfile
   ```
+
 - Optionally remove apps not declared in Brewfile:
+
   ```bash
   brew bundle cleanup --force --file=Brewfile
   ```
 
-**Manual Setup Required**: Import voiceink settings manually since they are not included in the config folder. You'll need to configure these settings through your voiceink application before proceeding. The settings are location in [./config/tools/voiceink/VoiceInk_Settings_Backup.json](./config/tools/voiceink/VoiceInk_Settings_Backup.json)
+**Manual Setup Required**: Import voiceink settings manually since they are not included in the config folder. You'll need to configure these settings through your voiceink application before proceeding. The settings are located in [./config/tools/voiceink/VoiceInk_Settings_Backup.json](./config/tools/voiceink/VoiceInk_Settings_Backup.json)
 
 ## Using Shell Utilities
 
@@ -81,6 +88,7 @@ nix run ./shell-utils#test
 ## Uninstall
 
 Uninstall nix
+
 ```zsh
 sudo darwin-uninstaller
 /nix/nix-installer uninstall
