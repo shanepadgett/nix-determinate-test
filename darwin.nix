@@ -57,6 +57,7 @@
   environment.systemPackages = with pkgs; [
     python311
     uv
+    nodejs_24
     bat
     direnv
     devenv
