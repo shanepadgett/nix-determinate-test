@@ -15,3 +15,5 @@ cask "voiceink"
 cask "warp"
 cask "zed"
 
+brew "xcodes"
+
